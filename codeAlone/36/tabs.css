@@ -1,0 +1,40 @@
+body{
+    background:rgb(252, 252, 251);
+}
+.tabs {
+    display: grid;
+}
+
+[role="tablist"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+}
+
+[role="tabpanel"] {
+    background: rgb(237, 253, 8);
+    border-radius: 5px;
+    padding: 2rem;
+    /* border: 1px solid black; */
+}
+
+button {
+    background:rgb(194, 201, 196);
+    border: 0;
+    color: black;
+    border-radius: 5px 5px 0 0;
+    --bs-color:rgb(86, 100, 90);
+    box-shadow: inset 0 -2px 5px var(--bs-color);
+    cursor: pointer;
+}
+
+button[aria-selected="true"] {
+    background: rgb(237, 253, 8);
+    box-shadow: none;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+button:focus {
+    outline: 0;
+    --bs-color: rgba(0, 0, 0, 0.6);
+}
