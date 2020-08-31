@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+
+        div {
+            margin: 30px;
+        }
+    </style>
+    <title> Font size changer </title>
+</head>
+
+<body>
+    <div>
+        <p>How many smileys do you want to see? </p>
+        <input type="text" id="myText" value=" ">
+        <button id="myButton" onclick="myFunction()">submit</button>
+    </div>
+
+    <p id="smiley" style='font-size:100px;'></p>
+
+    <script>
+        const num = document.getElementById("myText");
+        const smiley = document.getElementById("smiley");
+
+        function myFunction() {
+            
+            let numTimes = parseInt(num.value);
+            console.log(numTimes);
+            if (Number.isInteger(numTimes)) {
+                smiley.innerHTML =" ";
+                for(let i=0; i<numTimes; i++) {
+                    const img=document.createElement("img");
+                    img.src="./img/800px-Smiley.png";
+                    img.style.height="200px";
+                    img.style.width="200px";
+                    smiley.appendChild(img);  
+                }
+            } else {
+                smiley.innerHTML =" not a number";
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>
+
+
+
+
+

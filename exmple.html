@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ticking-clock</title>
+    <style>
+        .container{
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="start">start</button>
+        <p class="clock"></p>
+        <button class="stop">stop</button>
+    </div>
+    <script>
+        document.querySelector('.clock').innerHTML = '00 : 00 : 00'
+        let date = new Date();
+        date.setHours(00,00,00,00);
+        let milliseconds = Math.round(date.getMilliseconds()/100);
+        let seconds = date.getSeconds();
+        let minutes = date.getMinutes();
+        let flagRunning = 0;
+        let firstClick = 0;
+
+        function showTime(){
+            (flagRunning) && milliseconds++;
+            if (milliseconds === 10){
+               seconds += 1;
+               milliseconds = 0;
+            }
+            if (seconds === 60){
+                minutes += 1;
+                seconds = 0;
+            }
+            minutes = ('0'+ minutes).slice(-2);
+            seconds = ('0'+ seconds).slice(-2);
+            document.querySelector('.clock').innerHTML = `${minutes} : ${seconds} : ${milliseconds}`;
+            minutes = parseInt(minutes);
+            seconds = parseInt(seconds);
+        }
+
+        function setImediateInterval(funcToRun,ms){
+            funcToRun()
+            return setInterval(funcToRun,ms)
+        }
+
+        document.querySelector('.start').addEventListener('click',function(){
+            flagRunning = 1;
+            (!firstClick) && setImediateInterval(showTime,100);
+            firstClick = 1;
+        })
+
+        document.querySelector('.stop').addEventListener('click',function(){
+            flagRunning = 0;
+        })
+        
+        
+        
+          
+    </script>
+</body>
+</html>

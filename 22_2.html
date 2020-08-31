@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>checkbox</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      margin-top: 4%;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>When I wake up in the morning ;)</h2>
+  <input type="checkbox" id="check" onclick="morning()">
+  <br><br>
+  <img id="duck" style="visibility:hidden" src="./poto.jpg" width="500px" alt="">
+  <script>
+    
+    function morning() {
+      let checkBox = document.getElementById("check");
+      let img = document.getElementById("duck");
+      checkBox.checked == true?img.style.visibility = "visible":img.style.visibility = "hidden";
+    }
+  </script>
+</body>
+
+</html>

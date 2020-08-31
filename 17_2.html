@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+
+    </style>
+    <title> text area </title>
+</head>
+
+<body>
+    <p>Why are you interested in this position?</p>
+    <textarea id="textarea" name="comment" form="usrform"></textarea>
+    <input type="submit" value="Clik here!" onclick="countChar()">
+    <p id="alert"></p>
+
+    <script>
+        const alert = document.getElementById("alert");
+
+        function countChar() {
+            console.log('countChar');
+            const charCounter = document.getElementById("textarea").value.length;
+            if (charCounter <100) {
+                alert.innerHTML ="you must enter at least 100 characters before clicking the button.";
+            }else{
+                alert.innerHTML = " ";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        #output {
+            color: white;
+        }
+    </style>
+    <title> user age- 22.1</title>
+</head>
+
+<body>
+    <div>
+        <p>what is you are age? </p>
+        <input type="text" id="myText" value=" "></input>
+        <button id="myButton">submit</button>
+    </div>
+    <p id="output"></p>
+    <script>
+        document.body.style.background = "url('https://picsum.photos/500')";
+
+        const output = document.getElementById("output");
+        const btn = document.getElementById("myButton");
+        const age = document.getElementById("myText");
+
+        btn.addEventListener("click", myFunction);
+
+        function myFunction() {
+            output.innerHTML = " ";
+            let agenum = parseInt(age.value);
+            if (!isNaN(agenum)) {
+                if (agenum > 18) {
+                    output.innerHTML = "you can drink appear";
+                } else{
+                    output.innerHTML = "you\'re too young";
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

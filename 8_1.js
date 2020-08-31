@@ -1,9 +1,10 @@
 const people = ["Greg", "Mary", "Devon", "James"];
 
 //1
-// for(i in people){
-//     console.log(people[i]);
-// }
+console.log('1: ');
+people.forEach(element => {
+    console.log(element);
+});
 //2
 const indexGreg = people.indexOf("Greg");
 people.splice(indexGreg, 1);

@@ -4,8 +4,9 @@ const func = (str, callback) =>{
         callback(str); 
 } 
 
-callbackFunction = (str) => { 
-    console.log(str); 
+const callbackFunction = (str) => { 
+    console.log(str);
+
 } 
 
 func("shiran", callbackFunction);

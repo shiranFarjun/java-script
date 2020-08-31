@@ -5,8 +5,7 @@ let counter=0;
 
 for (let name of names) {
     counter++;
-    Object.entries(emptyObj).forEach(([key,value]) => { emptyObj[name] = counter })
-    // Object.assign(emptyObj,{name: counter});
+    emptyObj
 }
 
 console.log(emptyObj);

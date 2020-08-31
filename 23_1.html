@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav {
+            background: black;
+        }
+
+        nav>a {
+            color: white;
+            text-decoration: none;
+            margin: 2%;
+        }
+
+        #watches{
+            margin:2%;
+            font-size:100%;
+        }
+        .card>div {
+            display: inline-block;
+            margin: 5%;
+            width: 15;
+            height: 20%;
+            background: #c6b689;
+            text-align: center;
+        }
+
+        .card>div img {
+            width: 15%;
+            height: 20%;
+        }
+
+        .description {
+            margin-top: 5%;
+            text-align: center;
+        }
+
+        /* Add a hover effect if you want */
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+        /* Set a specific color for each brand */
+        /* Facebook */
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+
+        /* Twitter */
+        .fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        footer {
+            margin-left: 5%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="w3-button w3-bar-item">Home</a>
+        <a href="#contact" class="w3-button w3-bar-item">Contact</a>
+    </nav>
+
+    <section class="description">
+        <h2>Watches</h2>
+        <p id="watches"></p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Ea consequuntur aut blanditiis quia, corporis ut non ratione beatae nobis dolor asperiores aspernatur
+            possimus provident cum enim. Delectus accusamus eveniet molestias ducimus quibusdam minima magnam
+            praesentium, nesciunt nobis laborum, unde libero illum possimus labore neque officiis, in dolorum. Nesciunt,
+            quas? Dicta non deleniti fugit incidunt laudantium vel nobis doloremque tempora rem,
+            voluptates dignissimos nam quidem quisquam, obcaecati exercitationem! Dolor et quisquam amet expedita
+            delectus voluptatibus vel soluta eum rerum tenetur maiores saepe sit corporis consequatur a, at, sed in
+            veniam sequi quis suscipit vero.
+            Iure ipsam, atque aut in omnis reiciendis nam deserunt doloremque distinctio facilis fuga quia enim dolorem
+            nostrum sunt. Modi quas commodi iste voluptatem veritatis eum quia dignissimos deserunt asperiores similique
+            labore ipsam consectetur temporibus aut ut, optio incidunt id. Fugit id aliquid quae nostrum assumenda
+            officiis nihil quis reprehenderit, asperiores, minus voluptate, earum minima cupiditate illum?
+            Possimus nostrum excepturi labore neque, sunt necessitatibus tempore a quod sit impedit incidunt error vero
+            fugit quam debitis amet? Voluptatibus, magnam natus. Aut velit beatae quas qui nihil. Ullam neque deleniti
+            totam optio! Atque dicta mollitia exercitationem iusto commodi est impedit nihil nesciunt consequatur
+            provident fuga velit, consequuntur sequi minima amet recusandae consectetur ut. Voluptatum, similique natus
+            reiciendis nesciunt, a quae, quibusdam obcaecati quasi atque aut ab unde sint doloremque quidem aliquid.
+            Distinctio ut exercitationem temporibus dolorum,
+            alias modi, commodi placeat, eum quos fugiat officia in.
+            Praesentium assumenda reprehenderit perferendis, amet doloribus delectus, officiis repellendus in, autem
+            ipsum sint! Maiores itaque qui corporis tenetur, eos sapiente officia nesciunt explicabo eaque dolor aliquam
+            repellendus rerum animi deleniti illo delectus necessitatibus, atque architecto obcaecati, quae ut.
+            Porro odio asperiores impedit unde pariatur sunt exercitationem eligendi corporis corrupti, velit,
+            voluptatum fugit sapiente possimus, natus fuga cum tenetur a quo beatae!
+            Nam laudantium magni ab.</p>
+    </section>
+
+    <section class="card">
+        <div>
+            <p>ROSEFIELD</p>
+            <img src="./img/Watch1.jpg" alt="Random Name">
+            <p>100$</p>
+        </div>
+        <div>
+            <p>TALRON</p>
+            <img src="./img/Watch2.jpg" alt="Random Name">
+            <p>150$</p>
+        </div>
+        <div>
+            <p>Vincero</p>
+            <img src="./img/Watch3.jpg" alt="Random Name">
+            <p>200$</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-twitter"></a>
+    </footer>
+
+    <script>
+        let pWatches = document.getElementById("watches");
+        function time() {
+            let d = new Date();
+            let s = d.getSeconds();
+            let m = d.getMinutes();
+            let h = d.getHours();
+            pWatches.textContent = h + ":" + m + ":" + s;
+        }
+
+        setInterval(time, 1000);
+
+    </script>
+
+</body>
+
+</html>

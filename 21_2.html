@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title> light bulb- 22.2</title>
+</head>
+
+<body>
+    <p>Click the light bulb to turn on/off the light.</p>
+
+    <img id="myImage" src="./img/off.jpg" width="300" height="500">
+
+    <script>
+        let image = document.getElementById('myImage');
+        image.addEventListener("click", changeImage);
+        // implementation of turnOnOff function --> 
+        function changeImage() {
+            // image.src.match is simply looking to confirm that the image source file name matches something, 
+            //in this case "bulbon" if it matches ("if"), a block of code will be run, 
+            //if it doesn't, a different block of code will be run ("else")
+            if (image.src.match("bulbon")) {
+                image.src = "./img/off.jpg";
+            } else {
+                image.src = "./img/on.jpg";
+            }
+        }
+    </script>
+</body>
+
+</html>

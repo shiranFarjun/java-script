@@ -1,0 +1,56 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> amazon 21-3</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;        
+        }
+
+        div {
+            margin: 5%;
+            color: white;
+        }
+
+        h1 {
+            margin-top:3%;
+            color: rgb(27, 173, 218);
+        }
+
+        
+
+        
+    </style>
+</head>
+
+<body>
+    <h1>Amazon</h1>
+    <div>
+        <button class="btn" onClick="buttonClick()">Add to Cart</button>
+        <button class="btn" onClick="buttonClick()">Buy Now</button>
+    </div>
+    <p>Your cart: <input type="text" value="0" id="text" /></p>
+
+    <script>
+        function buttonClick() {
+            let inputUser = document.getElementById("text");
+            let cartValue = parseInt(inputUser.value);
+            cartValue += 1;
+            inputUser.value = cartValue;
+        }
+    </script>
+</body>
+
+</html>
