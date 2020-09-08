@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> star wars</title>
+</head>
+<style>
+    td {
+        border: 1px solid black;
+        background: rgb(158, 238, 158);
+    }
+</style>
+
+<body>
+
+    <script>
+
+        const swapi = 'https://swapi.dev/api/people';
+
+        let row, obj, col1, col2, col3, col4, col5;
+        let table = document.createElement('table');
+        document.body.appendChild(table);
+        let header = document.createElement('th');
+        header.textContent = 'Star Wars';
+        table.appendChild(header);
+        row = document.createElement('tr');
+        table.appendChild(row);
+        col1 = document.createElement('td');
+        col1.textContent = 'name';
+        row.appendChild(col1);
+        col2 = document.createElement('td');
+        col2.textContent = 'hair';
+        row.appendChild(col2);
+        col3 = document.createElement('td');
+        col3.textContent = 'height';
+        row.appendChild(col3);
+        col4 = document.createElement('td');
+        col4.textContent = 'planet name';
+        row.appendChild(col4);
+        col5 = document.createElement('td');
+        col5.textContent = 'planet population';
+        row.appendChild(col5);
+
+        async function getInformationPeople(url) {
+            const result = await fetch(url);
+            const data = await result.json();
+            return data;
+        }
+
+        async function fetchPlanet(urlplanet) {
+            const res = await fetch(urlplanet);
+            // const data = await res.json();
+            // console.log('data',data);
+            return data;
+        }
+
+        async function starWars() {
+            let Array = [];
+            // i=0 is the name of cell
+            for (let i = 0; i <= 10; i++) {
+                obj = {};
+                row = document.createElement('tr');
+                const people = await getInformationPeople(swapi);
+
+                obj.name = people.results[i].name;
+                col1 = document.createElement('td');
+                col1.textContent = obj.name;
+                row.appendChild(col1);
+
+                obj.hair = people.results[i].hair_color;
+                col2 = document.createElement('td');
+                col2.textContent = obj.hair;
+                row.appendChild(col2);
+
+                obj.height = people.results[i].height;
+                col3 = document.createElement('td');
+                col3.textContent = obj.height;
+                row.appendChild(col3);
+
+
+                let urlplanet = `${people.results[i].homeworld}`;
+                let dataplanet = fetchPlanet(urlplanet);
+                const  planet = dataplanet.json();
+                await console.log('planet', planet);
+
+                obj.home = planet.name;
+                col4 = document.createElement('td');
+                col4.textContent = obj.home;
+                row.appendChild(col4);
+
+                obj.population = planet.population;
+                col5 = document.createElement('td');
+                col5.textContent = obj.population;
+                row.appendChild(col5);
+
+                table.appendChild(row);
+                Array.push(obj);
+            }
+            // console.log(Array);
+        }
+
+        starWars();
+
+
+    </script>
+</body>
+
+</html>

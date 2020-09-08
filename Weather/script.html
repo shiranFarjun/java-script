@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather app</title>
+    <style>
+        div {
+            height: 100vh;
+            background-image: url("./sky.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cityInput {
+            margin-bottom: 2%;
+            border-radius: 6px;
+        }
+
+        .findBtn {
+            margin-bottom: 3%;
+            border-radius: 6px;
+            background: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input class="cityInput" type="text">
+        <button class="findBtn">find</button>
+        <p class="status"></p>
+        <h2>Current Weather</h2>
+        <p class="temperature"></p>
+        <h2>Sunrise</h2>
+        <p class="sunrise-clock"></p>
+        <h2>Sunset</h2>
+        <p class="sunset-clock"></p>
+        <h2>Searched Weather</h2>
+        <p class="search"> </p>
+    </div>
+
+    <script>
+        const myKeyApp = '59da0e80670a6f8bcb7c1e70a38dd5a6';
+        const baseUrl = 'http://api.openweathermap.org/data/2.5/weather';
+        document.querySelector('.findBtn').addEventListener('click', getCityFromUser);
+        let obj = {};
+        let nameCitys = [];
+        let arrObj = [];
+        let flagSunrise=true;
+
+        ///////////////////// in default: find by geolocation ///////////////////////////////
+        function geoFindMe() {
+            const status = document.querySelector('.status');
+
+            async function success(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                await fetchByGeo(longitude, latitude);
+            }
+
+            function error(err) {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
+            }
+            if (!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+            } else {
+                status.textContent = 'Locating…';
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+        }
+        geoFindMe();
+
+        async function fetchByGeo(longitude, latitude) {
+            const res = await fetch(`${baseUrl}?lat=${latitude}&lon=${longitude}&appid=${myKeyApp}&units=metric`);
+            const data = await res.json();
+            displayData(data);
+        }
+
+        //////////////////////// get the name city from user by clicking 'find' button //////////////////
+
+        async function getCityFromUser() {
+            const cityName = document.querySelector('.cityInput').value;
+            nameCitys.push(cityName);
+            await fetchByCityName(cityName);
+            // if(nameCitys.includes(cityName)) {
+            //     await fetchByCityName(cityName)
+            // } else {
+            //     console.log('cannot search for the same city twice');
+            // }
+        }
+
+        //////////////////////// fetching functions ////////////////////////////////////////
+
+        async function fetchByCityName(city) {
+            try {
+                const res = await fetch(`${baseUrl}?q=${city}&appid=${myKeyApp}&units=metric`);  // to change temprature c --->&units=metric
+                const data = await res.json();
+                displayData(data);
+            } catch (error) {
+                p.textContent = 'invalid city name';
+            }
+
+        }
+
+
+        function displayData(data) {
+            get_timeSun(data.sys['sunrise']);
+            flagSunrise=false;
+            get_timeSun(data.sys['sunset']);
+
+            obj.name = data.name;
+            obj.temperature = data.main['temp'];
+            obj.sunsrise = data.sys['sunrise'];
+            obj.sunset = data.sys['sunset'];
+            arrObj.push(obj);
+            console.log('obj', arrObj);
+            
+            document.querySelector('.temperature').textContent =obj.temperature ;
+            nameCitys.forEach(element => document.querySelector('.search').textContent = element+' ');
+        }
+
+        function get_timeSun(date) {
+            let dataSun = new Date(date * 1000);
+            let seconds =dataSun.getSeconds();
+            let minutes = dataSun.getMinutes();
+            let hour = dataSun.getHours();
+            if (flagSunrise){
+                document.querySelector('.sunrise-clock').innerHTML = `${hour} : ${seconds} : ${minutes}`;
+            }else{
+                document.querySelector('.sunset-clock').innerHTML = `${hour} : ${seconds} : ${minutes}`;
+
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

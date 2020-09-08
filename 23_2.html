@@ -1,85 +1,67 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ticking-clock</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        button {
-            display: flex;
-            justify-content: center;
-            margin-top: 10%;
-
-        }
-
-
-        #watche {
-            background: pink;
-            margin: 2%;
-            font-size: 100%;
+        .container{
+            margin: auto;
+            text-align: center;
         }
     </style>
-    <title> watch 23_2</title>
 </head>
-
 <body>
-    <h2> watch with a start and stop button.</h2>
-    <button onclick="stopClock()">Stop time</button>
-    <p id="watche"></p>
-    <button onclick="startClock()">Start time</button>
-
+    <div class="container">
+        <button class="start">start</button>
+        <p class="clock"></p>
+        <button class="stop">stop</button>
+    </div>
     <script>
-        let myTime = document.getElementById("watche");
-        myTime.innerHTML = '00:00:00';
-        myTime.setHours(00, 00, 00, 00);
-        let millisec = Math.round(date.getMilliseconds() / 100);
-        let seconds = myTime.getSeconds();
-        let minutes = myTime.getMinutes();
-        let isRun = false;
-        let firstClick = false;
+        document.querySelector('.clock').innerHTML = '00 : 00 : 00'
+        let date = new Date();
+        date.setHours(0,0,0,0);
+        let milliseconds = Math.round(date.getMilliseconds()/10);
+        let seconds = date.getSeconds();
+        let minutes = date.getMinutes();
+        let isRunning = false;
+        let firstTimrRun = false;
 
-        function runTime() {
-            (isRun) && millisec++;
-            if (millisec === 10) {
-                seconds += 1;
-                millisec = 0;
+        function viewTime(){
+            if(isRunning){
+                milliseconds++;
+            } 
+            if (milliseconds === 100){ 
+               seconds += 1;
+               milliseconds = 0;
             }
-            if (seconds === 60) {
+            if (seconds === 60){      
                 minutes += 1;
                 seconds = 0;
             }
-            minutes = ('0' + minutes).slice(-2);
-            seconds = ('0' + seconds).slice(-2);
-            document.getElementById('#watche').innerHTML = `${minutes} : ${seconds} : ${millisec}`;
-            minutes = parseInt(minutes);
-            seconds = parseInt(seconds);
+            minutes = parseInt(('0'+ minutes).slice(-2));
+            seconds = parseInt(('0'+ seconds).slice(-2));
+            document.querySelector('.clock').innerHTML = `${minutes} : ${seconds} : ${milliseconds}`;
+    
         }
 
-        function imediateInterval(func, ms) {
-            func()   // go to runTime function
-            return setInterval(func, ms)
+        function setImediateInterval(funcToRun,ms){
+            funcToRun()
+            return setInterval(funcToRun,ms)
         }
 
-        function startClock() {
-            isRun = true;
-            (!firstClick) && imediateInterval(runTime, 100);
-            firstClick = true;
-        }
+        document.querySelector('.start').addEventListener('click',function(){
+            isRunning = true;                                   // flag to know the clock is runing
+            if(!firstTimrRun) {
+                setImediateInterval(viewTime,100);
+            }
+            firstTimrRun = true;
+        })
 
-        function stopClock(){
-            isRun = false;
-        }
-
+        document.querySelector('.stop').addEventListener('click',function(){
+            isRunning = false;                      //Stops the clock from running
+        })
+          
     </script>
-
 </body>
-
 </html>
